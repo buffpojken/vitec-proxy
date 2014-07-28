@@ -6,7 +6,11 @@ require "awesome_print"
 require 'restclient'
 
 class Fetcher
+	extend Resque::Plugins::Retry
 
+	@retry_limit = 3
+	@retry_delay = 180
+	
 	@queue = :info_fetch_queue
 
 	def self.sandbox

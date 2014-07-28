@@ -5,6 +5,10 @@ require 'json'
 require './fetcher'
 
 class Updater
+	extend Resque::Plugins::Retry
+
+	@retry_limit = 3
+	@retry_delay = 180
 
 	@queue = :vitec_update_queue
 
