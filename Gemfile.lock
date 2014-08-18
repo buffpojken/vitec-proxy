@@ -4,6 +4,7 @@ GEM
     akami (1.2.2)
       gyoku (>= 0.4.0)
       nokogiri
+    awesome_print (1.2.0)
     builder (3.2.2)
     gyoku (1.1.1)
       builder (>= 2.1.2)
@@ -77,6 +78,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   redis
   resque
   resque-retry

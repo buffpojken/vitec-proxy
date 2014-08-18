@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/redis'
 require 'resque'
+require 'resque-retry'
 require 'json'
 require './updater'
 
