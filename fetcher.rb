@@ -35,7 +35,7 @@ class Fetcher
 			response 		= info.body[:hamta_bostadsratt_response]
 			result 			= response[:hamta_bostadsratt_result]
 
-			ap result
+#			ap result
 
 			email 			= result[:internetinstallningar][:intresseanmalan_epostmottagare].match(/<(.+)>/)
 
@@ -56,7 +56,9 @@ class Fetcher
 			}
 
 			# Here, switch address based on which project this item belongs to!		
+			ap objectData
 
+			return
 
 			url = determineEndpointOnProject(objectData[:projektnamn])
 
