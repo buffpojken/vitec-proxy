@@ -112,7 +112,7 @@ class Fetcher
 
 	def self.determineEndpointOnProject(project_name)
 		data = {
-			"Tyresö trädgårdar" => "http://localhost/oscarcampaign/chokladfabriken"
+			"Tyresö trädgårdar" => "http://www.op.whisprgroup.com/tyreso/"
 		}
 		return data.fetch(project_name, nil)
 	end
