@@ -5,6 +5,8 @@ require 'resque-retry'
 require 'json'
 require './updater'
 
+set :port, 6677
+
 configure do
 	Resque.redis = Redis.new	
 end
