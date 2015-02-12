@@ -13,10 +13,14 @@ class Updater
 	@queue = :vitec_update_queue
 
 	def self.perform(payload)
+		puts "hugo"
+		
 		redis = Redis.new
 
 
 		data 		= JSON.parse(payload)
+
+		puts "monkey"
 
 		client = Savon.client(wsdl: "http://export.capitex.se/Gemensam/Export.svc?singleWsdl")
 

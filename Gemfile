@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'rake'
 gem 'resque'
 gem 'sinatra'
 gem 'redis'
