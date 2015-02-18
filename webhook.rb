@@ -6,7 +6,7 @@ require 'json'
 require './updater'
 
 set :port, 6677
-set :bind, 'localhost'
+set :bind, '0.0.0.0'
 
 configure do
 	Resque.redis = Redis.new	

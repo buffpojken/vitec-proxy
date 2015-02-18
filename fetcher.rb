@@ -4,11 +4,11 @@ require 'savon'
 require 'redis'
 require 'json'
 require "awesome_print"
-require 'socksify'
+#require 'socksify'
 require 'set'
 
-TCPSocket::socks_server = "127.0.0.1"
-TCPSocket::socks_port = 2001
+# TCPSocket::socks_server = "127.0.0.1"
+# TCPSocket::socks_port = 2001
 
 class Fetcher
 	extend Resque::Plugins::Retry
