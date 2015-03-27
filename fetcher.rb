@@ -132,7 +132,9 @@ class Fetcher
 			"Reserverad"		=> ["Reserverad", true, false], 
 			"Såld"					=> ["Såld", false, false], 
 			"Sålddold"			=> ["hidden",false, true], 
-			'Till salu'			=> ['Ledig', true, false]
+			'Till salu'			=> ['Ledig', true, false], 
+			'Dold'					=> ['Dold', false, true], 
+			'Bokaddold' 		=> ['-', false, true]
 		}
 		return possible_statuses.fetch(status_key, ['hidden', false, true])
 	end
