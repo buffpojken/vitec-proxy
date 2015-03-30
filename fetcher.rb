@@ -65,7 +65,7 @@ class Fetcher
 			response 		= info.body[:hamta_bostadsratt_response]
 			result 			= response[:hamta_bostadsratt_result]
 
-			if result[:filer] && result[:fil]
+			if result[:filer] && result[:filer][:fil]
 				fil 				= result[:filer][:fil]
 			end
 
