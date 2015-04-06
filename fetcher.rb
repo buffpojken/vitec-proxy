@@ -4,16 +4,16 @@ require 'savon'
 require 'redis'
 require 'json'
 require "awesome_print"
-#require 'socksify'
 require 'set'
+require './parsers/small_definition_parser'
 
-# TCPSocket::socks_server = "127.0.0.1"
-# TCPSocket::socks_port = 2001
+Dir.glob('./parsers/**').each do |path|
+	require path
+end
+
 
 class Fetcher
 	extend Resque::Plugins::Retry
-
-
 
 	@retry_limit = 3
 	@retry_delay = 180
@@ -36,24 +36,6 @@ class Fetcher
 
 		if data["type"] == "CMNyProd"
 
-			# begin
-			# 	info = client.call(:hamta_projekt, message:{
-			# 		'licensid' 			=> "840120", 
-			# 		'licensnyckel' 	=> "8ad810bb-205a-b123-d4df-1af899371f17", 
-			# 		"guid"					=> data["guid"]
-			# 	})
-			# rescue Exception => e
-			# 	puts e.inspect
-			# end
-
-			# response = info.body[:hamta_projekt_response]
-			# result = response[:hamta_projekt_result]
-
-			# ap result[:namn] + " " + data['guid']
-			
-
-		# Add support for other house-types here!
-
 		elsif data["type"] == "CMBoLgh"
 			info = client.call(:hamta_bostadsratt, message: {
 				'licensid' 			=> "840120", 
@@ -65,48 +47,28 @@ class Fetcher
 			response 		= info.body[:hamta_bostadsratt_response]
 			result 			= response[:hamta_bostadsratt_result]
 
-			if result[:filer] && result[:filer][:fil]
-				fil 				= result[:filer][:fil]
-			end
-
 			email 			= result[:internetinstallningar][:intresseanmalan_epostmottagare].match(/<(.+)>/)
 
 			status 			= parseStatus(result[:status])
 
-			begin
-			objectData 	= {
-				:lgh_nr 					=> result[:lagenhetsnummer], 
-				:rooms						=> result[:rum][:antal_rum_min], 
-				:kvm 							=> result[:rum][:bostads_area], 
-				:fee 							=> result[:manadsavgift][:manads_avgift], 
-				:price 						=> result[:pris_anbud_tillval][:begart_pris], 
-				:balcony					=> (result[:balkong_och_uteplats] ? result[:balkong_och_uteplats][:sammanstallning] : 'Nej' ), 
-				:status						=> status[0], 
-				:available 				=> status[1],
-				:email_to 				=> email[1], 
-				:hidden 					=> status[2],
-				:name 						=> result[:lagenhetsnummer], 
-				:sortering 				=> data['index'],
-				:guid 						=> result[:guid], 
-				:latest_update		=> result[:senast_andrad].to_time.to_i, 
-			}
-			if fil
-				objectData[:plan] = "http://fastighet.capitex.se/CapitexResources/Capitex.Datalager.DBFile/Capitex.Datalager.DBFile.dbfile.aspx?g=#{fil[:guid]}&t=CFil"
+			parser 			= parse_by_project(result[:projektnamn])
+
+			unless parser
+				ap "#{result[:projektnamn]} is not configured with a parser."
+				return
 			end
-		rescue Exception => e
-			puts e
-		end
 
-			# Here, switch address based on which project this item belongs to!		
-			ap objectData
+			begin
+				objectData = parser.parse(result, status)
+			rescue Exception => e
+				puts e
+			end
 
-# #			return
-
-			url = determineEndpointOnProject(result[:projektnamn])
+			url = parser.endpoint_url
 			ap url
 			return unless url
 			wrapped_url = (url + "/vitec/webhook/")
-			puts wrapped_url
+
 			begin
 				response = RestClient.post wrapped_url, {:data => JSON.generate(objectData), :token => "ab87d24bdc7452e55738deb5f868e1f16dea5ace"}
 			rescue Exception => e
@@ -139,18 +101,13 @@ class Fetcher
 		return possible_statuses.fetch(status_key, ['hidden', false, true])
 	end
 
-	def self.determineEndpointOnProject(project_name)
-		# data = {
-		# 	"Tyresö trädgårdar" => "http://www.op.whisprgroup.com/tyreso/"
-		# }
+	def self.parse_by_project(project_name)
 		data = {
-			'HG7 Packhuset' => 'http://www.op.whisprgroup.com/packhuset', 
-			'Chokladfabriken' => 'http://www.op.whisprgroup.com/chokladfabriken'
+			'HG7 Packhuset' 		=> PackhusetParser, 
+			'Chokladfabriken'		=> ChokladfabrikenParser
 		}
 		if data[project_name]
 			return data[project_name]
-		else
-			@projects.puts project_name
 		end
 	end
 
