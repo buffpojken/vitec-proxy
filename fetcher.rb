@@ -104,7 +104,8 @@ class Fetcher
 	def self.parse_by_project(project_name)
 		data = {
 			'HG7 Packhuset' 		=> PackhusetParser, 
-			'Chokladfabriken'		=> ChokladfabrikenParser
+			'Chokladfabriken'		=> ChokladfabrikenParser. 
+			'Lyceum'						=> LyceumParser
 		}
 		if data[project_name]
 			return data[project_name]
