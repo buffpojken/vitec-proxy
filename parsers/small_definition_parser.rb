@@ -5,6 +5,8 @@ class SmallDefinitionParser
 			fil 				= result[:filer][:fil]
 		end
 
+		email 			= result[:internetinstallningar][:intresseanmalan_epostmottagare].match(/<(.+)>/)
+
 		objectData 	= {
 			:lgh_nr 					=> result[:lagenhetsnummer], 
 			:rooms						=> result[:rum][:antal_rum_min], 

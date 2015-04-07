@@ -47,8 +47,6 @@ class Fetcher
 			response 		= info.body[:hamta_bostadsratt_response]
 			result 			= response[:hamta_bostadsratt_result]
 
-			email 			= result[:internetinstallningar][:intresseanmalan_epostmottagare].match(/<(.+)>/)
-
 			status 			= parseStatus(result[:status])
 
 			parser 			= parse_by_project(result[:projektnamn])
