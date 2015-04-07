@@ -26,6 +26,8 @@ class SmallDefinitionParser
 		if fil
 			objectData[:plan] = "http://fastighet.capitex.se/CapitexResources/Capitex.Datalager.DBFile/Capitex.Datalager.DBFile.dbfile.aspx?g=#{fil[:guid]}&t=CFil"
 		end
+
+		objectData
 	end
 
 	def endpoint_url
