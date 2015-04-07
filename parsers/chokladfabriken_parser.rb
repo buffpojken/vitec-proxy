@@ -1,6 +1,7 @@
 class ChokladfabrikenParser < SmallDefinitionParser
 
-	def endpoint_url
+	def self.endpoint_url
+
 		'http://www.op.whisprgroup.com/chokladfabriken'
 	end
 

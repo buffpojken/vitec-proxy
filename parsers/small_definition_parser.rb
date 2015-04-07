@@ -30,7 +30,7 @@ class SmallDefinitionParser
 		objectData
 	end
 
-	def endpoint_url
+	def self.endpoint_url
 		raise NotImplementedError.new("SmallDefinitionParser doesn't provide this method, a subclass should implement it!")
 	end
 

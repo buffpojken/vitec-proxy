@@ -1,6 +1,7 @@
 class LyceumParser < SmallDefinitionParser
 
-	def endpoint_url
+	def self.endpoint_url
+
 		"http://www.oscarproperties.nu/lyceum2"
 	end
 

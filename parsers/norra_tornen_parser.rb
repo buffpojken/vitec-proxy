@@ -1,6 +1,7 @@
 class NorraTornenParser < SmallDefinitionParser
 
-	def endpoint_url
+	def self.endpoint_url
+
 
 	end
 
