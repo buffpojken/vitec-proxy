@@ -57,7 +57,7 @@ class Fetcher
 			end
 
 			begin
-				objectData = parser.parse(result, status)
+				objectData = parser.parse(result, status, data['index'])
 			rescue Exception => e
 				puts e
 			end

@@ -1,6 +1,6 @@
 class SmallDefinitionParser
 
-	def self.parse(result, status)
+	def self.parse(result, status, index)
 		if result[:filer] && result[:filer][:fil]
 			fil 				= result[:filer][:fil]
 		end
@@ -19,7 +19,7 @@ class SmallDefinitionParser
 			:email_to 				=> email[1], 
 			:hidden 					=> status[2],
 			:name 						=> result[:lagenhetsnummer], 
-			:sortering 				=> data['index'],
+			:sortering 				=> index,
 			:guid 						=> result[:guid], 
 			:latest_update		=> result[:senast_andrad].to_time.to_i, 
 		}
