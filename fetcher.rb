@@ -62,11 +62,8 @@ class Fetcher
 			rescue Exception => e
 				puts e
 			end
-
-			url = 
-			ap url
-			return unless url
 			wrapped_url = parser.endpoint_url
+			puts wrapped_url
 			begin
 				response = RestClient.post wrapped_url, {:data => JSON.generate(objectData), :token => "ab87d24bdc7452e55738deb5f868e1f16dea5ace"}
 			rescue Exception => e
