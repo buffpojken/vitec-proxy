@@ -104,7 +104,7 @@ class Fetcher
 			'HG7 Packhuset' 		=> PackhusetParser, 
 			'Chokladfabriken'		=> ChokladfabrikenParser,
 			'Lyceum'						=> LyceumParser, 
-			'Norra Tornen'			=> NorraTornenParser
+			'Norra tornen'			=> NorraTornenParser
 		}
 		if data[project_name]
 			return data[project_name]
