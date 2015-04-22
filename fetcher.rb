@@ -102,7 +102,8 @@ class Fetcher
 			'Chokladfabriken'		=> ChokladfabrikenParser,
 			'Lyceum'						=> LyceumParser, 
 			'Norra tornen'			=> NorraTornenParser, 
-			
+			'Industriverket'		=> IndustriverketParser
+		
 		}
 		if data[project_name]
 			return data[project_name]
