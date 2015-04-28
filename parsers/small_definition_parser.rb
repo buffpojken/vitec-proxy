@@ -16,6 +16,8 @@ class SmallDefinitionParser
 			:balcony					=> (result[:balkong_och_uteplats] ? result[:balkong_och_uteplats][:sammanstallning] : 'Nej' ), 
 			:status						=> status[0], 
 			:available 				=> status[1],
+			:floor 						=> result[:vaningsplan][:vaning],
+			:bi_kvm						=> result[:rum][:bi_area],
 			:email_to 				=> email[1], 
 			:hidden 					=> status[2],
 			:name 						=> result[:lagenhetsnummer], 
