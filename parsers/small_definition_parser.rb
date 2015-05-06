@@ -2,8 +2,6 @@ class SmallDefinitionParser
 
 	def self.parse(result, status, index)
 
-		ap result[:filer]
-
 		if result[:filer] && result[:filer][:fil]
 			fil 				= result[:filer][:fil]
 		end

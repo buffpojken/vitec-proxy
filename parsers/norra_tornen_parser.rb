@@ -5,4 +5,9 @@ class NorraTornenParser < SmallDefinitionParser
 #		"http://requestb.in/1fecj8t1"
 	end
 
+	def self.parse(result, status, index)
+		ap result.inspect
+		super
+	end
+
 end
