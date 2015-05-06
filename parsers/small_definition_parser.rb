@@ -1,6 +1,9 @@
 class SmallDefinitionParser
 
 	def self.parse(result, status, index)
+
+		ap result[:filer]
+
 		if result[:filer] && result[:filer][:fil]
 			fil 				= result[:filer][:fil]
 		end
@@ -25,6 +28,7 @@ class SmallDefinitionParser
 			:guid 						=> result[:guid], 
 			:latest_update		=> result[:senast_andrad].to_time.to_i, 
 		}
+
 		if fil
 			objectData[:plan] = "http://fastighet.capitex.se/CapitexResources/Capitex.Datalager.DBFile/Capitex.Datalager.DBFile.dbfile.aspx?g=#{fil[:guid]}&t=CFil"
 		end
