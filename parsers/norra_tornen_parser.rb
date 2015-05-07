@@ -1,7 +1,7 @@
 class NorraTornenParser < SmallDefinitionParser
 
 	def self.endpoint_url
-		"http://norratornenvip.com/wp-content/themes/Norra-Tornen/vitecSync.php "
+		"http://norratornen.com/wp-content/themes/Norra-Tornen/vitecSync.php"
 	end
 
 	def self.parse(result, status, index)		
