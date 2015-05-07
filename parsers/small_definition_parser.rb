@@ -13,7 +13,7 @@ class SmallDefinitionParser
 			:rooms						=> result[:rum][:antal_rum_min], 
 			:kvm 							=> result[:rum][:bostads_area], 
 			:fee 							=> result[:manadsavgift][:manads_avgift], 
-			:price 						=> result[:pris_anbud_tillval][:begart_pris], 
+			:price 						=> result[:pris_anbud_tillval][:utgangspris], 
 			:balcony					=> (result[:balkong_och_uteplats] ? result[:balkong_och_uteplats][:sammanstallning] : 'Nej' ), 
 			:status						=> status[0], 
 			:available 				=> status[1],
