@@ -1,7 +1,7 @@
 class ZootomiskaParser < SmallDefinitionParser
 
 	def self.endpoint_url
-		"http://www.op.whisprgroup.com/zootomiska/vitec/webhook/"
+		"http://lyceum1zootomiskavip.se/vitec/webhook/"
 	end
 
 end
