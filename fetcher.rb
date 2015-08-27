@@ -104,7 +104,7 @@ class Fetcher
 			'Norra tornen'			=> NorraTornenParser, 
 			'Industriverket'		=> IndustriverketParser, 
 			'79 & Park' 				=> Park79Parser, 
-			'Zootomiska' 				=> ZootmiskaParser		
+			'Zootomiska' 				=> ZootomiskaParser		
 		}
 		if data[project_name]
 			return data[project_name]
