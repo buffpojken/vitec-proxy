@@ -4,6 +4,9 @@ class SmallDefinitionParser
 
 		if result[:filer] && result[:filer][:fil]
 			fil 				= result[:filer][:fil]
+			if fil.is_a?(Array)
+				fil = fil[0]
+			end
 		end
 
 		email 			= result[:internetinstallningar][:intresseanmalan_epostmottagare].match(/<(.+)>/)
