@@ -102,7 +102,7 @@ class Fetcher
 			'HG7 Packhuset' 		=> PackhusetParser, 
 			'Chokladfabriken'		=> ChokladfabrikenParser,
 			'Lyceum'						=> LyceumParser, 
-			'norratornen'				=> NorraTornenParser, 
+			'Norra Tornen'				=> NorraTornenParser, 
 			'Innovationen'			=> NorraTornenParser, 
 			'Industriverket'		=> IndustriverketParser, 
 			'79 & Park' 				=> Park79Parser, 
