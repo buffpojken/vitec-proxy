@@ -61,6 +61,7 @@ class Fetcher
 				objectData = parser.parse(result, status, data['index'])
 			rescue Exception => e
 				puts e
+				puts e.backtrace
 			end
 			wrapped_url = parser.endpoint_url
 			puts wrapped_url
@@ -101,7 +102,8 @@ class Fetcher
 			'HG7 Packhuset' 		=> PackhusetParser, 
 			'Chokladfabriken'		=> ChokladfabrikenParser,
 			'Lyceum'						=> LyceumParser, 
-			'Norra tornen'			=> NorraTornenParser, 
+			'norratornen'				=> NorraTornenParser, 
+			'Innovationen'			=> NorraTornenParser, 
 			'Industriverket'		=> IndustriverketParser, 
 			'79 & Park' 				=> Park79Parser, 
 			'Zootomiska' 				=> ZootomiskaParser, 
